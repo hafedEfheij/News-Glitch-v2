@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Right-to-left alignment for Arabic content */
+.rtl-content {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Direct RTL styles for news titles */
+[dir="rtl"] {
+  text-align: right !important;
+}
+
+/* Force news titles to be right-aligned */
+.trending-news h3, .latest-news h3, .libya-news h3, .categorized-news h3 {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* Breaking News Styles */
+.breaking-news-item {
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 107, 107, 0.05);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-right: 3px solid hsl(var(--destructive));
+  transition: all 0.3s ease;
+}
+
+.breaking-news-item:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Al Jazeera Mubasher specific styles */
+.breaking-news-item[data-source="الجزيرة مباشر"] {
+  background-color: rgba(255, 107, 107, 0.08);
+  border-right: 4px solid hsl(var(--destructive));
+}
+
+.breaking-news-item[data-source="الجزيرة مباشر"]:hover {
+  background-color: rgba(255, 107, 107, 0.15);
+}
+
+/* Animated pulse for breaking news badge */
+@keyframes pulse-red {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Paleta profesional para modo claro */
+    --background: 210 40% 98%; /* Fondo azul muy claro */
+    --foreground: 222 47% 11%; /* Texto azul oscuro */
+
+    --card: 0 0% 100%; /* Tarjetas blancas */
+    --card-foreground: 222 47% 11%; /* Texto de tarjeta azul oscuro */
+
+    --popover: 0 0% 100%; /* Popover blanco */
+    --popover-foreground: 222 47% 11%; /* Texto de popover azul oscuro */
+
+    --primary: 210 100% 50%; /* Azul principal vibrante (#0080FF) */
+    --primary-foreground: 0 0% 100%; /* Texto sobre primario blanco */
+
+    --secondary: 210 40% 96%; /* Azul secundario muy claro */
+    --secondary-foreground: 222 47% 11%; /* Texto secundario azul oscuro */
+
+    --muted: 210 40% 96%; /* Fondo muted azul claro */
+    --muted-foreground: 215 16% 47%; /* Texto muted gris azulado */
+
+    --accent: 210 40% 96%; /* Acento azul claro */
+    --accent-foreground: 222 47% 11%; /* Texto de acento azul oscuro */
+
+    --destructive: 0 84% 60%; /* Rojo para alertas */
+    --destructive-foreground: 0 0% 98%; /* Texto sobre destructive */
+
+    --success: 142 76% 36%; /* Verde para éxito */
+    --success-foreground: 0 0% 98%; /* Texto sobre success */
+
+    --border: 214 32% 91%; /* Borde gris azulado claro */
+    --input: 214 32% 91%; /* Input gris azulado claro */
+    --ring: 210 100% 50%; /* Anillo azul principal */
+
+    /* Colores para gráficos */
+    --chart-1: 210 100% 50%; /* Azul principal */
+    --chart-2: 220 70% 50%; /* Azul violeta */
+    --chart-3: 280 65% 60%; /* Violeta */
+    --chart-4: 340 75% 55%; /* Rosa */
+    --chart-5: 30 80% 55%; /* Naranja */
+
+    --radius: 0.5rem;
+
+    /* Colores para la barra lateral */
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 210 100% 50%;
+  }
+
+  .dark {
+    /* Paleta profesional para modo oscuro */
+    --background: 222 47% 11%; /* Fondo azul oscuro */
+    --foreground: 210 40% 98%; /* Texto azul muy claro */
+
+    --card: 223 47% 14%; /* Tarjetas azul oscuro */
+    --card-foreground: 210 40% 98%; /* Texto de tarjeta azul claro */
+
+    --popover: 223 47% 14%; /* Popover azul oscuro */
+    --popover-foreground: 210 40% 98%; /* Texto de popover azul claro */
+
+    --primary: 210 100% 50%; /* Azul principal vibrante (#0080FF) */
+    --primary-foreground: 0 0% 100%; /* Texto sobre primario blanco */
+
+    --secondary: 217 33% 18%; /* Azul secundario oscuro */
+    --secondary-foreground: 210 40% 98%; /* Texto secundario azul claro */
+
+    --muted: 217 33% 18%; /* Fondo muted azul oscuro */
+    --muted-foreground: 215 20% 65%; /* Texto muted gris azulado claro */
+
+    --accent: 217 33% 18%; /* Acento azul oscuro */
+    --accent-foreground: 210 40% 98%; /* Texto de acento azul claro */
+
+    --destructive: 0 72% 51%; /* Rojo para alertas (oscuro) */
+    --destructive-foreground: 0 0% 98%; /* Texto sobre destructive */
+
+    --success: 142 70% 46%; /* Verde para éxito (oscuro) */
+    --success-foreground: 0 0% 98%; /* Texto sobre success */
+
+    --border: 217 33% 18%; /* Borde azul oscuro */
+    --input: 217 33% 18%; /* Input azul oscuro */
+    --ring: 210 100% 50%; /* Anillo azul principal */
+
+    /* Colores para gráficos (más brillantes en modo oscuro) */
+    --chart-1: 210 100% 60%; /* Azul principal */
+    --chart-2: 220 70% 60%; /* Azul violeta */
+    --chart-3: 280 65% 70%; /* Violeta */
+    --chart-4: 340 75% 65%; /* Rosa */
+    --chart-5: 30 80% 65%; /* Naranja */
+
+    /* Colores para la barra lateral */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 210 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* RTL Specific Styles */
+html[dir="rtl"] {
+  /* Flip icons and other elements that should be mirrored in RTL */
+  .flip-in-rtl {
+    transform: scaleX(-1);
+  }
+
+  /* Adjust text alignment for RTL */
+  .text-left {
+    text-align: right;
+  }
+
+  .text-right {
+    text-align: left;
+  }
+
+  /* Adjust margins and paddings for RTL */
+  .mr-1, .mr-2, .mr-3, .mr-4, .mr-5, .mr-6, .mr-8, .mr-10, .mr-12 {
+    margin-right: 0 !important;
+  }
+
+  .ml-1, .ml-2, .ml-3, .ml-4, .ml-5, .ml-6, .ml-8, .ml-10, .ml-12 {
+    margin-left: 0 !important;
+  }
+
+  /* Fix for Tailwind's RTL support */
+  .rtl\:mr-auto {
+    margin-right: auto !important;
+  }
+
+  .rtl\:ml-auto {
+    margin-left: auto !important;
+  }
+
+  /* Adjust flexbox direction for RTL */
+  .rtl\:flex-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+
+  /* Adjust text direction for inputs */
+  input, textarea {
+    text-align: right;
+  }
+
+  /* Global RTL adjustments for all text elements */
+  body {
+    direction: rtl;
+    text-align: right !important;
+  }
+
+  /* Adjust text direction for paragraphs and descriptions */
+  p, .text-muted-foreground, .line-clamp-2, .line-clamp-3, .card-description, div, span {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Adjust text direction for headings */
+  h1, h2, h3, h4, h5, h6, .card-title {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Force right alignment for news titles */
+  h3 a, h3 span, h3 div {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Adjust card content for RTL */
+  .card-content, .card-header, .card-footer, .card, .card-description {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* Force all elements to be right-aligned */
+  * {
+    text-align: right !important;
+  }
+
+  /* Force specific elements to be right-aligned */
+  h3, h3 *, a, a *, p, span, div.flex {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Force ClientLink components to be right-aligned */
+  a.hover\:text-primary, a.hover\:text-primary * {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Force news titles to be right-aligned */
+  .trending-news h3, .latest-news h3, .libya-news h3, .categorized-news h3,
+  .trending-news h3 *, .latest-news h3 *, .libya-news h3 *, .categorized-news h3 * {
+    text-align: right !important;
+    direction: rtl !important;
+    display: block !important;
+  }
+
+  /* Force news title links to be right-aligned */
+  .trending-news h3 a, .latest-news h3 a, .libya-news h3 a, .categorized-news h3 a {
+    display: inline-block !important;
+    text-align: right !important;
+    direction: rtl !important;
+    width: 100% !important;
+  }
+
+  /* Force right alignment for links in news titles */
+  a.hover\:text-primary {
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Force right alignment for news title content */
+  .flex-row-reverse {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Ensure title text is right-aligned */
+  h3 .flex-row-reverse {
+    justify-content: flex-start !important;
+  }
+
+  /* Specific styles for news components */
+  .trending-news h3, .latest-news h3, .libya-news h3, .categorized-news h3 {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Ensure all links in news titles are right-aligned */
+  .trending-news a, .latest-news a, .libya-news a, .categorized-news a {
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-end !important;
+    display: flex !important;
+    flex-direction: row-reverse !important;
+  }
+
+  /* Force title content to be right-aligned */
+  a[title], h3 a, .hover\:text-primary {
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Force external link icon to be properly positioned */
+  .h-3.w-3.mt-1.flex-shrink-0.ml-1 {
+    margin-left: 0.25rem !important;
+    margin-right: 0 !important;
+    order: -1 !important;
+    float: left !important;
+  }
+
+  /* Force news titles to be right-aligned */
+  h3.font-semibold.text-base.sm\:text-lg,
+  h3.font-semibold.text-base.sm\:text-lg.line-clamp-2.break-words,
+  h3.font-semibold.text-base.sm\:text-lg.text-right,
+  h3.font-semibold.text-base.sm\:text-lg.line-clamp-2.break-words.text-right {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Force ClientLink content to be right-aligned */
+  .hover\:text-primary.transition-colors.flex.items-start.gap-1.flex-row-reverse,
+  .hover\:text-primary.transition-colors.flex.items-start.gap-1.flex-row-reverse.text-right {
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+  }
+
+  /* Force news title text content to be right-aligned */
+  .hover\:text-primary.transition-colors.flex.items-start.gap-1.flex-row-reverse *,
+  .hover\:text-primary.transition-colors.flex.items-start.gap-1.flex-row-reverse.text-right * {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Override any inline styles */
+  [style*="text-align: left"] {
+    text-align: right !important;
+  }
+
+  /* Force title text to be right-aligned */
+  h3 a, h3 span, h3 div, a[title], .hover\:text-primary {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    text-align: right !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  /* Force news title content to be right-aligned */
+  h3 a span, h3 a div, a[title] span, a[title] div, .hover\:text-primary span, .hover\:text-primary div {
+    text-align: right !important;
+    direction: rtl !important;
+    width: 100% !important;
+  }
+
+  /* Force news title text to be right-aligned */
+  .ClientLink, .ClientLink * {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Adjust badge alignment for RTL */
+  .badge {
+    direction: rtl;
+  }
+
+  /* Adjust news items for RTL */
+  .news-item, .news-title, .news-description, .news-source, .news-date {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Adjust links for RTL */
+  a {
+    direction: rtl;
+  }
+
+  /* Adjust tabs for RTL */
+  .tabs-list {
+    flex-direction: row-reverse;
+  }
+
+  /* Adjust buttons for RTL */
+  .button-text {
+    direction: rtl;
+  }
+
+  /* Adjust all news components for RTL */
+  .trending-news, .latest-news, .libya-news, .categorized-news {
+    direction: rtl;
+  }
+}

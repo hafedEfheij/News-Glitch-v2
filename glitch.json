@@ -1,0 +1,24 @@
+{
+  "install": "npm install",
+  "start": "npm run start",
+  "watch": {
+    "throttle": 1000,
+    "install": {
+      "include": [
+        "^package\\.json$"
+      ]
+    },
+    "restart": {
+      "include": [
+        "^\\.env$",
+        "^next\\.config\\.js$"
+      ]
+    },
+    "noRestart": {
+      "include": [
+        "^public/",
+        "^src/"
+      ]
+    }
+  }
+}

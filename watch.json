@@ -1,0 +1,24 @@
+{
+  "install": {
+    "include": [
+      "^package\\.json$"
+    ],
+    "exclude": []
+  },
+  "restart": {
+    "include": [
+      "^\\.env$",
+      "^next\\.config\\.js$",
+      "^server\\.js$"
+    ],
+    "exclude": []
+  },
+  "noWatch": {
+    "include": [
+      "^public/",
+      "^\\.next/"
+    ],
+    "exclude": []
+  },
+  "throttle": 1000
+}
